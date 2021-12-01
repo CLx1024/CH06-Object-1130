@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <string name="m020203_t000">我的行程</string>-->
+    <string name="m020204_t000">行程搜尋</string>
+    <string name="m020204_e001">行程搜尋：</string>
+    <string name="m020204_t001">他人行程 1</string>
+    <string name="m020204_t002">他人行程 2</string>
+    <string name="m020204_add">+</string>
+    <string name="m020204_delete">-</string>
+    <string name="m020204_thumb">讚</string>
+
+    <string name="m020204_b007">人氣行程</string>
+    <string name="m020204_b008">人氣地點</string>
+    <string name="m020204_b009">精選行程</string>
+    <string name="m020204_b010">精選地點</string>
+
+</resources>
