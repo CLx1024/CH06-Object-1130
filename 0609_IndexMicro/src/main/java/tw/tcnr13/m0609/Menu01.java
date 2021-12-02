@@ -2,13 +2,17 @@ package tw.tcnr13.m0609;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.BreakIterator;
 
@@ -17,6 +21,7 @@ public class Menu01 extends AppCompatActivity {
 
     private TextView tv;
     private TextView myname;
+    private Intent intent01 = new Intent();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,14 +95,74 @@ public class Menu01 extends AppCompatActivity {
                         objt001.getPaddingBottom()); // 設定文字內間距 left,top,right,bottom
                 mlay02.addView(tv);// 顯示textview物件    //你ScrollView裡面的Linear Layout
 
-//                tv.setOnClickListener(clkOn);     //監聽
+                tv.setOnClickListener(clkOn);     //監聽
             }
-
 
         } catch (Exception e) {
             return;  //try假如有錯誤的話就回去了
         }
 
-
     }
+
+
+    private View.OnClickListener clkOn = new View.OnClickListener() {
+       @Override
+       public void onClick(View v) {
+
+           int ii = (v.getId()); // 下層巨集前兩碼
+           String mm = String.format("%02d", ii);
+           String subname = "m" + mm;
+
+           // ------------------------------------------
+//            Log.d(TAG, "subname:"+subname);
+//            intent01.putExtra("sel", ii);
+           intent01.putExtra("subname", subname); // subname => m05,m06,m07....m17
+           intent01.setClass(Menu01.this, Menu02.class);
+           startActivity(intent01);
+
+       }
+   };
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {  // 加onCreateOptionsMenu跟onOptionsItemSelected就會有右邊點點選單
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.m0609, menu);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        //      super.onBackPressed();  //不執行這行
+        Toast.makeText(getApplication(),"禁用返回鍵",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { // 加onCreateOptionsMenu跟onOptionsItemSelected就會有右邊點點選單
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        switch(item.getItemId()){
+            case R.id.m_about:
+                // intent到哪一支 (或跳哪一支視窗visible??)
+                break;
+            case R.id.action_settings:
+                this.finish();
+                break;
+
+        }
+
+        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            this.finish();  // 加這行 按了才會返回/結束
+//            return true;
+//        }          // 有上幾行this.finish()那段，這段if就可以不用寫了
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 }
